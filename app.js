@@ -4,10 +4,10 @@ $("[name='my-checkbox']").bootstrapSwitch();
 $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
   console.log(state); // true | false
   if(!state){
-    url = "http://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=imperial&APPID=173d45a8a4cea9f316f3142c74393309";
+    url = "https://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=imperial&APPID=173d45a8a4cea9f316f3142c74393309";
     symbol = ' F';
   }else {
-    url = "http://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=metric&APPID=173d45a8a4cea9f316f3142c74393309";
+    url = "https://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=metric&APPID=173d45a8a4cea9f316f3142c74393309";
     symbol = '\xB0C';
   }
   getWeather(url, symbol);
@@ -20,7 +20,7 @@ function getLocation(){
             long = position.coords.longitude;
             console.log(lat);
             console.log(long);
-            url = "http://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=metric&APPID=173d45a8a4cea9f316f3142c74393309";
+            url = "https://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=metric&APPID=173d45a8a4cea9f316f3142c74393309";
             symbol = '\xB0C';
             getWeather(url, symbol);
         })
