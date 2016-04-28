@@ -4,10 +4,10 @@ $("[name='my-checkbox']").bootstrapSwitch();
 $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
   console.log(state); // true | false
   if(!state){
-    url = "https://cors.io/?u=https://api.forecast.io/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat+ "," + long+"?units=us";
+    url = "https://weather.astha.me/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat+ "," + long+"?units=us";
     symbol = ' F';
   }else {
-    url = "https://cors.io/?u=https://api.forecast.io/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat + "," + long + "?units=si";
+    url = "https://weather.astha.me/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat + "," + long + "?units=si";
     symbol = '\xB0C';
   }
   getWeather(url, symbol);
@@ -20,7 +20,7 @@ function getLocation(){
             long = position.coords.longitude;
             console.log(lat);
             console.log(long);
-            url = "https://cors.io/?u=https://api.forecast.io/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat + "," + long + "?units=si";
+            url = "https://weather.astha.me/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat + "," + long + "?units=si";
             symbol = '\xB0C';
             getWeather(url, symbol);
         })
