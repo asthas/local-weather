@@ -4,10 +4,10 @@ $("[name='my-checkbox']").bootstrapSwitch();
 $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
   console.log(state); // true | false
   if(!state){
-    url = "http://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=imperial&APPID=173d45a8a4cea9f316f3142c74393309";
+    url = "http://cors.io/?u=https://api.forecast.io/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat+ "," + long+"?units=us";
     symbol = ' F';
   }else {
-    url = "http://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=metric&APPID=173d45a8a4cea9f316f3142c74393309";
+    url = "http://cors.io/?u=https://api.forecast.io/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat + "," + long + "?units=si";
     symbol = '\xB0C';
   }
   getWeather(url, symbol);
@@ -20,7 +20,7 @@ function getLocation(){
             long = position.coords.longitude;
             console.log(lat);
             console.log(long);
-            url = "http://api.openweathermap.org/data/2.5/forecast/weather?lat=" + lat + "&lon=" + long + "&units=metric&APPID=173d45a8a4cea9f316f3142c74393309";
+            url = "http://cors.io/?u=https://api.forecast.io/forecast/a4d96f54066d22e1e08e3f7ed73b7f54/" + lat + "," + long + "?units=si";
             symbol = '\xB0C';
             getWeather(url, symbol);
         })
@@ -47,26 +47,26 @@ function getWeather(url){
 function display(data, symbol){
     displayImg(data);
     var output = '';
-    output += '<h2>' + data.city.name + '</h2>';
-    output += '<h4>' + data.list[0].weather[0].main + '</h4>';
-    output += '<h5>' + data.list[0].weather[0].description + '</h5>';
-    output += '<h1>' + data.list[0].main.temp + symbol + '</h1>';
+    output += '<h2>' + data.timezone + '</h2>';
+    output += '<h4>' + data.currently.icon + '</h4>';
+    output += '<h1>' + data.currently.temperature + symbol + '</h1>';
     document.getElementById("data").innerHTML = output;
 }
 function displayImg(data){
-        var main = data.list[0].weather[0].main;
-        var description = data.list[0].weather[0].description;
+        var main = data.currently.icon;
         console.log(data);
-        if(main.indexOf("Cloud") > -1 && description.indexOf("Overcast") > -1){
+        if(main.indexOf("cloudy") > -1){
             document.getElementById("back-img").style.backgroundImage="url(images/overcast.jpg)";
-        } else if(main.indexOf("Wind") > -1){
+        } else if(main.indexOf("wind") > -1){
             document.getElementById("back-img").style.backgroundImage="url(images/windy.jpg)";
         } else if(main.indexOf("Sun") > -1){
             document.getElementById("back-img").style.backgroundImage="url(images/sunny.jpg)";
-        } else if(main.indexOf("Rain") > -1){
+        } else if(main.indexOf("rain") > -1){
             document.getElementById("back-img").style.backgroundImage="url(images/rainy.jpg)";
-        }else if(main.indexOf("Cloud") > -1){
+        }else if(main.indexOf("partly-cloudy") > -1){
             document.getElementById("back-img").style.backgroundImage="url(images/cloudy.jpg)";
+        }else if(main.indexOf("clear-night") > -1){
+            document.getElementById("back-img").style.backgroundImage="url(images/clear-night.jpg)";
         }else{
             document.getElementById("back-img").style.backgroundImage="url(images/snow.jpg)";
         }
